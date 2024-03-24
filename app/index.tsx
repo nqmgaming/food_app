@@ -10,7 +10,7 @@ import {
 import Colors from "@/constants/Colors";
 import { router } from "expo-router";
 
-const splash = () => {
+const index = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       router.replace("/(auth)/auth");
@@ -41,7 +41,7 @@ const splash = () => {
   );
 };
 
-export default splash;
+export default index;
 
 const styles = StyleSheet.create({
   container: {

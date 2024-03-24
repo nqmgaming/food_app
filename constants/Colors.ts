@@ -12,6 +12,8 @@ export default {
     purple: "#AD88C6",
     pink: "#E1AFD1",
     delicatePink: "#FFE6E6",
+    gray: "#E5E5E5",
+    lightMilk: "#F2F2F2",
   },
   dark: {
     text: "#fff",
@@ -23,5 +25,7 @@ export default {
     purple: "#AD88C6",
     pink: "#E1AFD1",
     delicatePink: "#FFE6E6",
+    gray: "#E5E5E5",
+    lightMilk: "#F2F2F2",
   },
 };
