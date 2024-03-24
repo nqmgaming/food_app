@@ -3,10 +3,16 @@ import React, { useState, useEffect } from "react";
 import TextInputComponent from "@/components/TextInputComponent";
 import ButtonComponent from "@/components/ButtonComponent";
 import Colors from "@/constants/Colors";
-import { router } from "expo-router";
+import { router, useGlobalSearchParams } from "expo-router";
 
 const emailRegister = () => {
   const [email, setEmail] = useState("");
+  const global = useGlobalSearchParams();
+  const { name } = global;
+  console.log("====================================");
+  console.log("emailRegister", name);
+  console.log("====================================");
+
   return (
     <View>
       <TextInputComponent
@@ -26,7 +32,7 @@ const emailRegister = () => {
         onPress={() => {
           router.navigate({
             pathname: "registerPassword",
-            params: { email: email },
+            params: { email: email, name: name },
           });
         }}
       />

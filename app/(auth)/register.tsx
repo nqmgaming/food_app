@@ -4,7 +4,6 @@ import TextInputComponent from "@/components/TextInputComponent";
 import ButtonComponent from "@/components/ButtonComponent";
 import Colors from "@/constants/Colors";
 import { router } from "expo-router";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const register = () => {
   const [name, setname] = useState("");

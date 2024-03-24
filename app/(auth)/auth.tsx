@@ -12,6 +12,7 @@ import Colors from "@/constants/Colors";
 import { router } from "expo-router";
 
 const auth = () => {
+  console.log(`${process.env.REACT_APP_API_URL}/users/register`);
   return (
     <View style={styles.container}>
       <Image
@@ -34,10 +35,8 @@ const AuthButton = ({ text, customStyle }) => (
     onPress={() => {
       if (text === "Register") {
         router.push("/(auth)/register");
-        ToastAndroid.show("Register", ToastAndroid.SHORT);
       } else {
         router.push("/(auth)/login");
-        ToastAndroid.show("Login", ToastAndroid.SHORT);
       }
     }}
   >

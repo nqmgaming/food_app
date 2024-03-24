@@ -9,13 +9,21 @@ import {
 } from "react-native";
 import Colors from "@/constants/Colors";
 import { router } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const index = () => {
   useEffect(() => {
-    const timer = setTimeout(() => {
-      router.replace("/(auth)/auth");
-    }, 1500);
-    return () => clearTimeout(timer);
+    const checkLogin = async () => {
+      const isLogin = await AsyncStorage.getItem("isLogin");
+      console.log(isLogin);
+
+      if (isLogin === "true") {
+        router.replace("/(tab)/home");
+      } else {
+        router.replace("/(auth)/auth");
+      }
+    };
+    checkLogin();
   }, []);
   return (
     <SafeAreaView style={styles.container}>

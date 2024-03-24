@@ -4,11 +4,37 @@ import { useState } from "react";
 import TextInputComponent from "@/components/TextInputComponent";
 import ButtonComponent from "@/components/ButtonComponent";
 import Colors from "@/constants/Colors";
-import { router } from "expo-router";
+import { router, useGlobalSearchParams } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 const loginPassword = () => {
   const [password, setPassword] = useState("");
+  const global = useGlobalSearchParams();
+  const { email } = global;
+
+  const login = async () => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/users/login`,
+        {
+          email: email,
+          password: password,
+        }
+      );
+
+      const token = response.data.token;
+
+      // Save token to local storage
+      await AsyncStorage.setItem("token", token);
+      await AsyncStorage.setItem("isLogin", "true");
+
+      // Navigate to home
+      router.replace("/(tab)/home");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <View>
@@ -26,9 +52,7 @@ const loginPassword = () => {
         title="Continue"
         disable={password.trim().length < 3}
         colorDisable="#BDBDBD"
-        onPress={() => {
-          router.push("/(tab)/home");
-        }}
+        onPress={login}
       />
     </View>
   );
